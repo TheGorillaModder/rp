@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROM Library</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      overflow-x: auto;
+      background-color: #1f1f1f;
+      padding: 10px;
+    }
+    nav button {
+      background: #2c2c2c;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    nav button:hover {
+      background: #3f3f3f;
+    }
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      color: #ffcc00;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 5px 0;
+      border-bottom: 1px solid #333;
+    }
+    a {
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<main id="content"></main>
+
+<script>
+const romData = {
+  "Atari 2600": [
+    "3D Rubik's Cube.zip", "Activision Decathlon, The.zip", "Adventure.zip", "Adventures of Tron.zip", "Air Raid.zip", "Air Raiders.zip", "Air-Sea Battle.zip", "Alligator People.zip", "Amidar.zip", "Armor Ambush.zip", "Artillery Duel.zip", "Asterix.zip", "Asteroids.zip", "Astroblast.zip", "Atlantis.zip", "Bank Heist.zip", "Barnstorming.zip", "Base Attack.zip", "Basketball.zip", "Battlezone.zip", "Beamrider.zip", "Berzerk.zip", "BMX Air Master.zip", "Boing!.zip", "Bowling.zip", "Boxing.zip", "Breakout.zip", "Buck Rogers - Planet of Zoom.zip", "Bump 'n' Jump.zip", "Bumper Bash.zip", "BurgerTime.zip", "Cakewalk.zip", "California Games.zip", "Canyon Bomber.zip", "Carnival.zip", "Cat Trax.zip", "Centipede.zip", "Challenge.zip", "Chopper Command.zip", "Chuck Norris Superkicks.zip", "Circus Atari.zip", "Combat Two.zip", "Combat.zip", "Commando Raid.zip", "Commando.zip", "Communist Mutants from Space.zip", "Congo Bongo.zip", "Cosmic Ark.zip", "Crack'ed.zip", "Crackpots.zip", "Crazy Climber.zip", "Crystal Castles.zip", "Cubicolor.zip", "Dark Cavern.zip", "Defender II.zip", "Defender.zip", "Demon Attack.zip", "Demons to Diamonds.zip", "Desert Falcon.zip", "Dig Dug.zip", "Dodge 'Em.zip", "Donald Duck's Speedboat.zip", "Donkey Kong Junior.zip", "Donkey Kong.zip", "Double Dragon.zip", "Double Dunk.zip", "Dragonfire.zip", "Dragonstomper.zip", "Dragster.zip", "E.T. the Extra-Terrestrial (Fixed).zip", "E.T. the Extra-Terrestrial.zip", "Elevator Action.zip", "Enduro.zip", "Entombed.zip", "Escape from the Mindmaster.zip", "Fantastic Voyage.zip", "Fast Eddie.zip", "Fast Food.zip", "Fatal Run.zip", "Fathom.zip", "Fire Fighter.zip", "Fireball.zip", "Football.zip", "Freeway.zip", "Frogger II - ThreeeDeep!.zip", "Frogger.zip", "Frogs and Flies.zip", "Front Line.zip", "Frostbite.zip", "Galaxian.zip", "Gangster Alley.zip", "Gas Hog.zip", "Gauntlet.zip", "Gopher.zip", "Gorf.zip", "Grand Prix.zip", "Gravitar.zip", "Gyruss.zip", "H.E.R.O..zip", "Halloween.zip", "Hangman.zip", "Haunted House.zip", "Human Cannonball.zip", "Ice Hockey.zip", "Ikari Warriors.zip", "Indy 500.zip", "Infiltrate.zip", "Ixion.zip", "Jawbreaker.zip", "Joust.zip", "Jr. Pac-Man.zip", "Jungle Hunt.zip", "Kabobber.zip", "Kaboom!.zip", "Kangaroo.zip", "Keystone Kapers.zip", "Klax.zip", "Krull.zip", "Kung-Fu Master.zip", "Laser Blast.zip", "Laser Gates.zip", "Lock 'n' Chase.zip", "Looping.zip", "Lost Luggage.zip", "M.A.D..zip", "Marauder.zip", "Marine Wars.zip", "Mario Bros..zip", "Master Builder.zip", "Maze Craze - A Game of Cops 'n Robbers.zip", "Megamania.zip", "Meltdown.zip", "Midnight Magic.zip", "Millipede.zip", "Miner 2049er Starring Bounty Bob.zip", "Miner 2049er Volume II.zip", "Missile Command.zip", "Montezuma's Revenge Featuring Panama Joe.zip", "Moon Patrol.zip", "Moonsweeper.zip", "Motocross Racer.zip", "MotoRodeo.zip", "Mountain King.zip", "Mouse Trap.zip", "Mr. Do!.zip", "Mr. Do!'s Castle.zip", "Mr. Postman.zip", "Ms. Pac-Man.zip", "Music Machine, The.zip", "Mysterious Thief, A.zip", "Night Driver.zip", "No Escape!.zip", "Obelix.zip", "Official Frogger, The.zip", "Oink!.zip", "Oscar's Trash Race.zip", "Othello.zip", "Outlaw.zip", "Pac-Man (USA).zip", "Pac-Man.zip", "Pengo.zip", "Pepsi Invaders.zip", "Pharaoh's Curse.zip", "Phaser Patrol.zip", "Phoenix.zip", "Pitfall II - Lost Caverns.zip", "Pitfall!.zip", "Planet Patrol.zip", "Plaque Attack.zip", "Pleiades.zip", "Polaris.zip", "Pole Position.zip", "Polo.zip", "Pooyan.zip", "Popeye.zip", "Pressure Cooker.zip", "Private Eye.zip", "Q-bert.zip", "Rabbit Transit.zip", "Radar Lock.zip", "Raiders of the Lost Ark.zip", "Ram It.zip", "Rampage.zip", "RealSports Baseball.zip", "RealSports Basketball.zip", "RealSports Boxing.zip", "RealSports Football.zip", "RealSports Soccer.zip", "RealSports Tennis.zip", "RealSports Volleyball.zip", "Riddle of the Sphinx.zip", "River Raid II.zip", "River Raid.zip", "Road Runner.zip", "Robot Tank.zip", "Room of Doom.zip", "Saboteur.zip", "Save Mary!.zip", "Sea Monster.zip", "Seahawk.zip", "Seaquest.zip", "Secret Quest.zip", "Shootin' Gallery.zip", "Sinistar.zip", "Skate Boardin'.zip", "Sky Diver.zip", "Sky Jinks.zip", "Sky Skipper.zip", "Smurf - Rescue in Gargamel's Castle.zip", "Snoopy and the Red Baron.zip", "Solar Fox.zip", "Solaris.zip", "Space Attack.zip", "Space Cavern.zip", "Space Invaders (USA).zip", "Space Invaders.zip", "Space Jockey.zip", "Space Master X-7.zip", "Space Shuttle - A Journey into Space.zip", "Space War.zip", "Spider Fighter.zip", "Spider-Man.zip", "Sprint Master.zip", "Spy Hunter.zip", "Squeeze Box.zip", "Stampede.zip", "Star Raiders.zip", "Star Trek - Strategic Operations Simulator.zip", "Star Wars - Jedi Arena.zip", "Star Wars - Return of the Jedi - Death Star Battle.zip", "Star Wars - Return of the Jedi - Ewok Adventure.zip", "Star Wars - The Arcade Game.zip", "Star Wars - The Empire Strikes Back.zip", "Starmaster.zip", "Strategy X.zip", "Subterranea.zip", "Suicide Mission.zip", "Summer Games.zip", "Super Breakout.zip", "Super Challenge Baseball.zip", "Super Challenge Football.zip", "Super Cobra.zip", "Super Football.zip", "Superman.zip", "Surround.zip", "Survival Run.zip", "Tac-Scan.zip", "Tapeworm.zip", "Tapper.zip", "Task Force.zip", "Taz.zip", "Tennis.zip", "Threshold.zip", "Thunderground.zip", "Thwocker.zip", "Tomcat - The F-14 Fighter Simulator.zip", "Tooth Protectors.zip", "Towering Inferno.zip", "Track & Field.zip", "Trick Shot.zip", "Tron - Deadly Discs.zip", "Tunnel Runner.zip", "Turmoil.zip", "Tutankham.zip", "Vanguard.zip", "Venture.zip", "Video Olympics.zip", "Video Pinball.zip", "Warlords.zip", "Winter Games.zip", "Wizard of Wor.zip", "Worm War I.zip", "Xevious.zip", "Yars' Revenge.zip", "Zaxxon.zip", "Asteroids.0a.sta"
+  ],
+  "Dreamcast": [
+    "Alien Front Online (USA).chd", "ChuChu Rocket! (USA) (En,Ja,Fr,De,Es).chd", "Confidential Mission (USA).chd", "Crazy Taxi (USA).chd", "Crazy Taxi 2 (USA).chd", "Daytona USA (USA).chd", "GigaWing (USA).chd", "GigaWing 2 (USA).chd", "Grand Theft Auto 2 (USA).chd", "Gunbird 2 (USA).chd", "House of the Dead 2, The (USA).chd", "Hydro Thunder (USA) (Rev 1).chd", "Looney Tunes - Space Race (USA) (En,Fr,Es).chd", "Mars Matrix (USA).chd", "Marvel vs. Capcom 2 (USA).chd", "MSR - Metropolis Street Racer (USA).chd", "Outtrigger (USA).chd", "Quake III - Arena (USA).chd", "Re-Volt (USA).chd", "San Francisco Rush 2049 (USA) (En,Fr,De,Es,It,Nl).chd", "Soulcalibur (USA).chd", "Tony Hawk's Pro Skater 2 (USA).chd", "Unreal Tournament (USA) (En,Fr,De,Es,It).chd", "Virtua Tennis (USA).chd", "Wacky Races (USA).chd"
+  ],
+  "Gameboy Advance": [
+    "1246 - Mario And Luigi Superstar Saga (E)(Menace).gba", "Castlevania - Aria of Sorrow # GBA.GBA", "Grand Theft Auto Advance (U).gba", "Legend of Zelda, The - The Minish Cap (U).gba", "Metroid Fusion (U) [!].gba", "Mother 3 (Eng. Translation 1.1).gba"
+  ],
+  "Nintendo 3DS": [
+    "Luigi's Mansion - Dark Moon (USA) (En,Fr,Es).cia", "Luigi's Mansion (USA).cia", "Mario Kart 7 (USA) (En,Fr,Es) (Rev 1).cia", "Mario Party - Star Rush (USA) (En,Fr,Es).cia", "Super Mario 3D Land (USA) (En,Fr,Es) (Rev 1).cia"
+  ],
+  "Nintendo 64": [
+    "1080 Snowboarding (Japan, USA) (En,Ja).zip", "Blast Corps (USA) (Rev 1).zip", "Bomberman 64 - The Second Attack! (USA).zip", "Bomberman 64 (USA).zip", "F-Zero X (USA).zip", "Kirby 64 - The Crystal Shards (USA).zip", "Legend of Zelda, The - Ocarina of Time (USA) (Rev 2).zip", "Mario Kart 64 (USA).zip", "Star Fox 64 (USA) (Rev 1).zip", "Super Mario 64 (USA).zip", "Wave Race 64 - Kawasaki Jet Ski (USA) (Rev 1).zip"
+  ],
+  "Playstation 1": [
+    "Crash Bandicoot 2 - Cortex Strikes Back (USA).chd", "Driver 2 (USA) (Disc 1) (Rev 1).chd", "Gex - Enter the Gecko (USA).chd", "I.Q - Intelligent Qube (USA).chd", "Ridge Racer (USA).chd"
+  ]
+};
+
+const content = document.getElementById("content");
+const nav = document.getElementById("nav");
+
+Object.keys(romData).forEach((system, i) => {
+  const section = document.createElement("section");
+  section.id = system.replace(/\s+/g, "-");
+  section.className = i === 0 ? "active" : "";
+  section.innerHTML = `<h2>${system}</h2><ul>${romData[system].sort().map(f => `<li><a href="Roms/${f}" download>${f}</a></li>`).join('')}</ul>`;
+  content.appendChild(section);
+
+  const btn = document.createElement("button");
+  btn.textContent = system;
+  btn.onclick = () => {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    section.classList.add("active");
+  };
+  nav.appendChild(btn);
+});
+</script>
+
+</body>
+</html>
